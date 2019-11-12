@@ -25,17 +25,17 @@ var schema = buildSchema(`
 var todosMock = [
     {
         id: 1,
-        title: 'teste 1 Doing something',
+        title: 'Supermarket',
         done: false
     },
     {
         id: 2,
-        title: 'teste 2 Doing something gui',
+        title: 'Read a new book',
         done: false
     },
     {
         id: 3,
-        title: 'teste 3 Doing something',
+        title: 'Write a Medium post',
         done: true
     }
 ]
@@ -46,7 +46,6 @@ var root = {
     addTodo: ({ title }) => {
         var id = [...todosMock].pop().id + 1
         todosMock.push({ id: id, title: title, done: false })
-        // return todosMock.find(_ => _.id === id)
         return todosMock
     },
     updateTodo: ({ id, title, done }) => {
@@ -54,7 +53,6 @@ var root = {
             if (todo.id === id) {
                 todo.title = title != null && title != todo.title ? title : todo.title;
                 todo.done = done != null && done != todo.done ? done : todo.done;
-                // return done;
             }
         });
 
@@ -66,7 +64,6 @@ var root = {
     }
 };
 
-// Create an express server and a GraphQL endpoint
 var app = express();
 app.use('/graphql', express_graphql({
     schema: schema,
